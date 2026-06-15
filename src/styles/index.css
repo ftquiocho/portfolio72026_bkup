@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-bg-base text-ink overflow-x-hidden antialiased selection:bg-accent selection:text-white;
+  }
+}
+
+@layer utilities {
+  .bg-dots {
+    background-image: radial-gradient(#141414 1px, transparent 1px);
+    background-size: 24px 24px;
+    @apply bg-bg-base opacity-[0.08] fixed inset-0 -z-10;
+  }
+
+  .wireframe-box {
+    @apply bg-bg-base relative;
+    background-image: 
+      linear-gradient(to right, #E5E5E5 1px, transparent 1px),
+      linear-gradient(to bottom, #E5E5E5 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  .wireframe-box::after {
+    content: '';
+    @apply absolute inset-0 border border-border-light;
+  }
+
+  .link-underline {
+    @apply relative inline-block pb-1;
+  }
+  
+  .link-underline::after {
+    content: '';
+    @apply absolute w-full h-[2px] bottom-0 left-0 bg-accent scale-x-0 origin-bottom-right transition-transform duration-500 ease-spring;
+  }
+  
+  .link-underline:hover::after {
+    @apply scale-x-100 origin-bottom-left;
+  }
+
+  .reveal {
+    @apply opacity-0 translate-y-10 transition-all duration-[1200ms] ease-smooth;
+  }
+  
+  .reveal.active {
+    @apply opacity-100 translate-y-0;
+  }
+
+  .hide-scroll::-webkit-scrollbar { 
+    display: none; 
+  }
+}
